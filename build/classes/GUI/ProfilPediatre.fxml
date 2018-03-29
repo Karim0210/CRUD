@@ -31,5 +31,6 @@
          </font>
       </Label>
       <Text fx:id="specialite" layoutX="48.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Label fx:id="nbrvues" layoutX="39.0" layoutY="343.0" text="Label" />
    </children>
 </AnchorPane>

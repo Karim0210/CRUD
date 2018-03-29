@@ -56,6 +56,19 @@ public class PediatreService {
         }
     
     }
+    public void modifierNbvue (Pediatre p)
+    {
+        
+        
+      String req="update pediatre set vues='"+p.getVues()+"' where id="+p.getId();  
+       
+        try {
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ste.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
      
     public void modifierPediatre (Pediatre p)
@@ -167,5 +180,74 @@ public class PediatreService {
         }
     return list ; 
       }
+    
+    public void setdemandeOn(int id){
+        String req="update pediatre set demande=1 where id=?";  
+        try {
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ste.setInt(1,id) ;
+            ste.executeUpdate() ; 
+        } catch (SQLException ex) {
+            System.out.println("probleme d'activation");
+        }
+        
+    }
+    
+    public void setdemandeOff(int id){
+        String req="update pediatre set demande=0 where id=?";  
+        try {
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ste.setInt(1,id) ;
+            ste.executeUpdate() ; 
+        } catch (SQLException ex) {
+            System.out.println("probleme de desactivation");
+        }
+        
+    }
+    
+    public Pediatre getOne(int id) {
+        String req="select * from pediatre where id="+id;  
+        Pediatre p=new Pediatre();
+        try { 
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ResultSet result =ste.executeQuery() ; 
+            while (result.next()){
+                    p.setId(result.getInt("id"));
+                    p.setNom(result.getString("nom"));
+                    p.setPrenom(result.getString("prenom"));
+                    p.setEmail(result.getString("email"));
+                    p.setSpecialite(result.getString("specialite"));
+                    p.setRating(result.getInt("rating"));
+                    p.setAdresse(result.getString("adresse"));
+                    p.setPrix(result.getDouble("prix"));
+                    p.setDemande(result.getInt("demande"));
+                    p.setDescription(result.getString("description"));
+                    p.setImage(result.getString("image"));
+                    p.setFormation( result.getString("formation"));
+                    p.setParcours(result.getString("parcours"));
+                    p.setVues(result.getInt("vues"));
+                    p.setLikes(result.getInt("likes"));
+                    p.setQuiz(result.getInt("quiz"));
+                    p.setNbrQuiz(result.getInt("nbrQuiz"));
+                    p.setNum(result.getInt("num"));
+                    p.setNbJetons(result.getInt("nbJetons"));
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(PediatreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+
+    }
+    public int getnbr(int id) throws SQLException{
+        int count =0;
+        String req="Select round(AVG(rating)) from pediatre where id="+id;
+          PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ResultSet result =ste.executeQuery() ; 
+            while (result.next()){
+             count = result.getInt(1);
+            }
+          return count;
+        
+    }
     
 }

@@ -4,10 +4,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListePediatreController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListePediatreController">
    <children>
-      <ListView fx:id="listviewpediatre" onMouseClicked="#handle" prefHeight="364.0" prefWidth="600.0" />
-      <Button fx:id="toppediatre" layoutX="534.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#top" text="top 5" />
-      <Button layoutX="470.0" layoutY="364.0" mnemonicParsing="false" text="s'inscrire" />
+      <ListView fx:id="listviewpediatre" onMouseClicked="#handle" prefHeight="364.0" prefWidth="698.0" />
+      <Button fx:id="toppediatre" layoutX="640.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#top" text="top 5" />
+      <Button fx:id="btnajout" layoutX="569.0" layoutY="364.0" mnemonicParsing="false" onAction="#ajouterPediatre" text="s'inscrire" />
    </children>
 </AnchorPane>

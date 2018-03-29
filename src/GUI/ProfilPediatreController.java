@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -31,6 +32,8 @@ public class ProfilPediatreController implements Initializable {
     private Text specialite;
     
     Pediatre pinfo;
+    @FXML
+    private Label nbrvues;
 
     /**
      * Initializes the controller class.
@@ -51,6 +54,7 @@ public class ProfilPediatreController implements Initializable {
         this.description.setText(p.getDescription());
         //this.btnechange.setText(p.getParent().getNom());
         pinfo = p;
+        nbrvues.setText(String.valueOf(p.getVues()));
         
         
     }

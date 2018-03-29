@@ -6,13 +6,26 @@
 package GUI;
 
 import entities.Pediatre;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import services.PediatreService;
 
 /**
@@ -42,6 +55,16 @@ public class AjouterPediatreController implements Initializable {
     private TextField descriptionT;
     @FXML
     private TextField adresseT;
+    
+    private  File selectedFile;
+    private  FileChooser file;
+    
+    @FXML
+    private ImageView imgpediatre;
+    @FXML
+    private AnchorPane ajoutpedanchor;
+    
+    
 
     /**
      * Initializes the controller class.
@@ -52,7 +75,7 @@ public class AjouterPediatreController implements Initializable {
     }    
 
     @FXML
-    private void ajouterPediatre(ActionEvent event) {
+    private void ajouterPediatre(ActionEvent event) throws IOException {
         
         PediatreService ps = new PediatreService();
         
@@ -77,9 +100,43 @@ public class AjouterPediatreController implements Initializable {
         p.setDescription(description);
         p.setAdresse(adresse);
         p.setPrix(0);
+        p.setImage(nom+prenom+".jpg");
+        
+       
+            try{
+            File f=new File(selectedFile.getAbsolutePath());
+            f.renameTo(new File("C:\\Users\\Karim\\Documents\\NetBeansProjects\\CRUD\\src\\images\\"+nom+prenom+".jpg"));
+            java.lang.Thread.sleep(1000);}
+            catch(Exception errim)
+            {System.out.println("Erreur image : "+errim.getMessage());};
+     
         
         ps.ajouterPediatre(p);
+        
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Parent root= FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+                
        
+    }
+    
+    
+    @FXML
+    private void ajoutimage(MouseEvent event) throws InterruptedException {
+        try
+        {
+        file=new FileChooser();
+        selectedFile=file.showOpenDialog(null);
+        Image i=new Image("file:\\"+selectedFile.getAbsolutePath());
+        imgpediatre.setImage(i);
+        }
+        catch(Exception errim)
+            {System.out.println("Erreur image : "+errim.getMessage());};
+        
+
     }
     
 }

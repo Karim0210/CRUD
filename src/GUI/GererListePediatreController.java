@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import com.jfoenix.controls.JFXToggleButton;
 import entities.Pediatre;
 import java.net.URL;
 import java.util.List;
@@ -21,6 +22,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -72,6 +74,8 @@ public class GererListePediatreController implements Initializable {
     private TextField ided;
     @FXML
     private Button modifiered;
+    @FXML
+    private TableColumn<Pediatre, Boolean> activationcol;
     
 
     /**
@@ -109,6 +113,7 @@ public class GererListePediatreController implements Initializable {
 			{
                                 javafx.scene.image.Image imgdel = new Image(getClass().getResourceAsStream("/images/delete.png"));
                                 final Button btnSupp = new Button();
+                               
                                 
                                
 				
@@ -129,6 +134,13 @@ public class GererListePediatreController implements Initializable {
                                                     afficherPediatre();
 						});
                                                 
+                                                 
+						
+                                                
+                                                 
+                                                 
+                                                
+                                                //css
                                                 btnSupp.setStyle("-fx-background-color: transparent;");
 						ImageView iv = new ImageView();
                                                 iv.setFitHeight(20);
@@ -156,6 +168,63 @@ public class GererListePediatreController implements Initializable {
 	};
     
     ////////////////////////////// fin input bouton ///////////////////////
+    /////////////// input ta3 lbouton toggle /////////////////
+        Callback<TableColumn<Pediatre, Boolean>, TableCell<Pediatre, Boolean>> cellFactory2 = 
+			new Callback<TableColumn<Pediatre, Boolean>, TableCell<Pediatre, Boolean>>()
+	{
+		@Override
+		public TableCell<Pediatre, Boolean> call( final TableColumn<Pediatre, Boolean> param)
+		{
+                    
+			final TableCell<Pediatre, Boolean> cell2 = new TableCell<Pediatre, Boolean>()
+			{
+                                
+                                final JFXToggleButton btnActivation = new JFXToggleButton();
+                                
+                               
+				
+				@Override
+				public void updateItem(Boolean check, boolean empty)
+				{
+					super.updateItem(check, empty);
+					if(empty)
+					{
+						setGraphic(null);
+						setText(null);
+					}
+					else{
+						btnActivation.setOnAction(e ->{
+                                                    if(btnActivation.isSelected()==true)
+                                                        {
+                   
+                                                            as.setdemandeOn(getTableView().getItems().get(getIndex()).getId());
+                                                            
+                                                        }
+                                                        else{
+                                                            
+                                                            as.setdemandeOff(getTableView().getItems().get(getIndex()).getId());
+                                                            
+                                                        }
+						});
+                                                if(as.getOne(getTableView().getItems().get(getIndex()).getId()).getDemande()== 1)
+                                                {
+                                                    btnActivation.setSelected(true);
+                                                    
+                                                    
+                                                }else{
+                                                    btnActivation.setSelected(false);
+                                                }
+       
+						setGraphic(btnActivation);
+						setAlignment(Pos.CENTER);
+                                                }
+				}
+			};
+			return cell2;
+		}        
+	};
+                                                 
+           
         nomcol.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomcol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         emailcol.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -164,7 +233,7 @@ public class GererListePediatreController implements Initializable {
         descriptioncol.setCellValueFactory(new PropertyValueFactory<>("description"));
         idcol.setCellValueFactory(new PropertyValueFactory<>("id"));
         editcol.setCellFactory(cellFactory);
-        
+        activationcol.setCellFactory(cellFactory2);
         
     }
 
