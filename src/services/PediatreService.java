@@ -69,6 +69,33 @@ public class PediatreService {
             Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void modifierlikes (Pediatre p)
+    {
+        
+        
+      String req="update pediatre set likes='"+p.getLikes()+"' where id="+p.getId();  
+       
+        try {
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ste.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void modifierRating (Pediatre p)
+    {
+        
+        
+      String req="update pediatre set rating='"+p.getRating()+"' where id="+p.getId();  
+       
+        try {
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ste.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
      
     public void modifierPediatre (Pediatre p)
@@ -239,8 +266,8 @@ public class PediatreService {
 
     }
     public int getnbr(int id) throws SQLException{
-        int count =0;
-        String req="Select round(AVG(rating)) from pediatre where id="+id;
+          int count =0;
+          String req="Select round(AVG(rating)) from pediatre where id="+id;
           PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
             ResultSet result =ste.executeQuery() ; 
             while (result.next()){
@@ -250,4 +277,9 @@ public class PediatreService {
         
     }
     
+    public double calculerRating(Pediatre p )
+    {
+        double rating = ((double) p.getLikes()/(double) p.getVues())*5;
+        return rating;       
+    }
 }

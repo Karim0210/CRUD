@@ -28,7 +28,7 @@ public class Main extends Application {
         
         Parent root = FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
         Scene scene = new Scene(root);
-        
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle("Health care");
         primaryStage.setScene(scene);
         primaryStage.show();

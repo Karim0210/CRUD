@@ -6,6 +6,7 @@
 package GUI;
 
 import entities.Pediatre;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -25,7 +26,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.ListView;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -33,6 +37,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -62,6 +67,9 @@ public class ListePediatreController implements Initializable {
     private Button toppediatre;
     @FXML
     private Button btnajout;
+    private Button btnlistepediatre;
+    @FXML
+    private Button btnaccueil;
     
     public ListePediatreController()
     {
@@ -84,6 +92,11 @@ public class ListePediatreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+              btnaccueil.setStyle(
+               "-fx-background-color: #ffffff;"+
+               "-fx-border-radius: 4px;"+
+               "-fx-padding: 4px 10px;"
+        );
         afficher();
     }  
     
@@ -96,7 +109,7 @@ public class ListePediatreController implements Initializable {
         listviewpediatre.getItems().clear();
         l = ps.selectPediatre();
         
-        l.stream().forEach(p->{
+        l.stream().forEach((Pediatre p)->{
             
             Text fNom=new Text("Nom : ");
             Text fLikes=new Text("Likes : ");
@@ -144,9 +157,9 @@ public class ListePediatreController implements Initializable {
                     rating=new Rating(5,0);
                 }
                     else
-                {
-                    System.out.println(Math.round(ps.getnbr(p.getId())*0.05));
-                    rating = new Rating(5, (int) Math.round((ps.getnbr(p.getId())*0.05)));
+                {   
+                    //System.out.println(Math.round(ps.calculerRating(p)));
+                    rating = new Rating(5, (int) Math.round(ps.calculerRating(p)));
                     rating.setDisable(true);
                     
                 }
@@ -162,7 +175,7 @@ public class ListePediatreController implements Initializable {
             pan3.getChildren().add(Specialite);
             pan3.setPrefHeight(50);
             
-            pan.setUserData(p); //// set ta3 l'objet ///
+            pan.setUserData(p); //// emplacement pan ///
             pan.getChildren().add(pan1);
             pan.getChildren().get(0).setLayoutX(0);
             pan.getChildren().add(pan2);
@@ -200,7 +213,11 @@ public class ListePediatreController implements Initializable {
        
         p.setVues(p.getVues()+1);
         ps.modifierNbvue(p);
-        System.out.println(p.getVues());        
+        p.setRating((int)Math.round(ps.calculerRating(p)));
+        ps.modifierRating(p);
+        
+        
+        
        Parent root= FXMLLoader.load(getClass().getResource("ProfilPediatre.fxml"));
        Scene scene = new Scene(root);
        Stage stage = new Stage();
@@ -273,8 +290,8 @@ public class ListePediatreController implements Initializable {
                 }
                     else
                 {
-                    System.out.println(Math.round(ps.getnbr(p.getId())*0.05));
-                    rating = new Rating(5, (int) Math.round((ps.getnbr(p.getId())*0.05)));
+                    
+                    rating = new Rating(5, (int) Math.round(ps.calculerRating(p)));
                     rating.setDisable(true);
                     
                 }
@@ -308,9 +325,12 @@ public class ListePediatreController implements Initializable {
        
                
     }
+     
+
 
     @FXML
     private void ajouterPediatre(ActionEvent event) throws IOException {
+        
         
        Parent root= FXMLLoader.load(getClass().getResource("AjouterPediatre.fxml"));
        Scene scene = new Scene(root);
@@ -320,6 +340,94 @@ public class ListePediatreController implements Initializable {
        
        ((Node) (event.getSource())).getScene().getWindow().hide();
         
+    }
+
+    @FXML
+    private void HoverImage(MouseEvent event) {
+    }
+
+    @FXML
+    private void ExitHoverMenu(MouseEvent event) {
+        ((Control)event.getSource()).setStyle("-fx-background-color: #666666;" +"-fx-text-fill: #F2F2F2;");
+            ((Control)event.getSource()).setEffect(null);
+            
+            //POUR LE CHANGEMENT DE COULEUR DS IMAGES
+             for( Node child: ((Control)event.getSource()).getChildrenUnmodifiable()) {
+        if( child instanceof ImageView) {
+           ImageView imageView = (ImageView) child;
+            String string = imageView.getImage().impl_getUrl().substring(6, imageView.getImage().impl_getUrl().length());
+            if(string.contains("icon11.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon1.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+            else if(string.contains("icon22.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon2.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+            else if(string.contains("icon33.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon3.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+            else if(string.contains("icon4.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon41.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+            else if(string.contains("icon5.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon6.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+        }
+          }
+    }
+
+    @FXML
+    private void HoverMenu(MouseEvent event) {
+           DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(16.01);
+            dropShadow.setOffsetX(0);
+            dropShadow.setOffsetY(10.0);
+            dropShadow.setHeight(66.04);
+            dropShadow.setColor(Color.color(0, 0, 0));
+         ((Control)event.getSource()).setStyle("-fx-background-color: #F2F2F2;" +"-fx-text-fill: #666666;");
+         ((Control)event.getSource()).setEffect(dropShadow);
+         
+         //POUR LE CHANGEMENT DE COULEUR DS IMAGES
+          for( Node child: ((Control)event.getSource()).getChildrenUnmodifiable()) {
+        if( child instanceof ImageView) {
+            ImageView imageView = (ImageView) child;
+            String string = imageView.getImage().impl_getUrl().substring(6, imageView.getImage().impl_getUrl().length());
+            if(string.contains("icon1.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon11.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+            else if(string.contains("icon2.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon22.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+            else if(string.contains("icon3.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon33.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+            else if(string.contains("icon41.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon4.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+            else if(string.contains("icon6.png") ){
+                 File file = new File("C://Users/Karim/Documents/NetBeansProjects/CRUD/src/images/icon5.png");
+                 Image newImage = new Image(file.toURI().toString());
+                 imageView.setImage(newImage);
+            }
+        }
+          }
     }
     
     
