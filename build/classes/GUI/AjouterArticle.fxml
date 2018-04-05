@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -15,21 +15,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListePediatreController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterArticleController">
    <children>
-      <ListView fx:id="listviewpediatre" layoutX="263.0" layoutY="103.0" onMouseClicked="#handle" prefHeight="476.0" prefWidth="698.0" />
-      <Button fx:id="toppediatre" layoutX="789.0" layoutY="599.0" mnemonicParsing="false" onMouseClicked="#top" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 10px;" text="Top 3" textFill="WHITE">
-         <font>
-            <Font name="Ubuntu Bold" size="20.0" />
-         </font></Button>
-      <Button fx:id="btnajout" layoutX="609.0" layoutY="599.0" mnemonicParsing="false" onAction="#ajouterPediatre" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 10px;" text="s'inscrire" textFill="WHITE">
-         <font>
-            <Font name="Ubuntu Bold" size="20.0" />
-         </font></Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ea624c" height="77.0" layoutX="197.0" stroke="BLACK" strokeType="INSIDE" width="809.0" />
-      <Pane prefHeight="653.0" prefWidth="197.0" style="-fx-background-color: #666666;">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ea624c" height="77.0" layoutX="197.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="1084.0" />
+      <Pane prefHeight="800.0" prefWidth="197.0" style="-fx-background-color: #666;">
          <children>
-            <Label layoutX="4.0" layoutY="112.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="BABYSITTERS" textFill="#f2f2f2">
+            <Label layoutX="4.0" layoutY="112.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="BABYSITTERS" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -57,7 +48,7 @@
                   <Glow />
                </effect>
             </Label>
-            <Label layoutX="4.0" layoutY="190.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="HEALTH CARE" textFill="#f2f2f2">
+            <Label layoutX="4.0" layoutY="190.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="HEALTH CARE" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -69,7 +60,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label layoutX="5.0" layoutY="268.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="EDUCATION" textFill="#f2f2f2">
+            <Label layoutX="5.0" layoutY="268.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="EDUCATION" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -84,7 +75,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label layoutX="5.0" layoutY="346.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="EVENTS" textFill="#f2f2f2">
+            <Label layoutX="5.0" layoutY="346.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="EVENTS" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -119,17 +110,42 @@
             <DropShadow radius="15.19" width="41.76" />
          </effect>
       </Pane>
-      <Button fx:id="btnaccueil" layoutX="794.0" layoutY="26.0" mnemonicParsing="false" text="Accueil" textFill="#ea624c" />
-      <Text fill="WHITE" layoutX="874.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Listes Pediatres">
+      <Button fx:id="btnaccueil" layoutX="881.0" layoutY="26.0" mnemonicParsing="false" text="Accueil" textFill="#ea624c" />
+      <Button fx:id="btnlistepediatre" layoutX="969.0" layoutY="26.0" mnemonicParsing="false" text="Alimentation" textFill="#ea624c" />
+      <Text fill="WHITE" layoutX="1099.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des articles alimentaire">
          <font>
             <Font name="Ubuntu Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="859.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;" />
-      <Text fill="WHITE" layoutX="263.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Listes Pediatres">
+      <Text fill="WHITE" layoutX="951.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;" />
+      <Text fill="WHITE" layoutX="1082.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;" />
+      <Text fill="WHITE" layoutX="252.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des articles alimentaire">
          <font>
             <Font name="Ubuntu Bold" size="25.0" />
          </font>
       </Text>
+      <Text fill="#1bb4b9" layoutX="252.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="les informations de l'article" wrappingWidth="645.9830722808838">
+         <font>
+            <Font name="Fredoka One" size="40.0" />
+         </font>
+      </Text>
+      <Label layoutX="252.0" layoutY="204.0" text="Titre* :" />
+      <Label layoutX="701.0" layoutY="204.0" text="Autheur* :" />
+      <Label layoutX="252.0" layoutY="279.0" text="Text* :" />
+      <Label layoutX="252.0" layoutY="546.0" text="Type* :" />
+      <TextField fx:id="nomT" layoutX="326.0" layoutY="200.0" prefHeight="25.0" prefWidth="287.0" />
+      <TextField fx:id="prenomT" layoutX="775.0" layoutY="200.0" prefHeight="25.0" prefWidth="287.0" />
+      <TextField fx:id="emailT" layoutX="326.0" layoutY="279.0" prefHeight="193.0" prefWidth="287.0" />
+      <TextField fx:id="specialiteT" layoutX="326.0" layoutY="542.0" prefHeight="25.0" prefWidth="287.0" />
+      <ImageView fx:id="imgpediatre" fitHeight="235.0" fitWidth="318.0" layoutX="749.0" layoutY="279.0" onMouseClicked="#ajoutimage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/profilimgupload.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="ajouterbtn" layoutX="749.0" layoutY="610.0" mnemonicParsing="false" onAction="#ajouterPediatre" prefHeight="48.0" prefWidth="318.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 10px;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Bold" size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/GUI/ListePediatreController.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/GUI/GererListePediatreController.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/GUI/AjouterPediatreController.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/services/RendezVousService.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/entities/RendezVous.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/GUI/ProfilPediatreController.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/services/PediatreService.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/GUI/AjouterArticleController.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/GUI/RendezVousController.java</file>
+            <file>file:/C:/Users/Karim/Documents/NetBeansProjects/CRUD/src/GUI/Main.java</file>
+        </group>
     </open-files>
 </project-private>

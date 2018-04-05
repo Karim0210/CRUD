@@ -5,6 +5,8 @@
  */
 package entities;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 /**
@@ -19,25 +21,35 @@ public class RendezVous {
     private Date dateRendezVous;
     private String nom;
     private String prenom;
+    private String heure;
 
     public RendezVous() {
     }
 
-    public RendezVous(int id, int idUser, int idPediatre, Date dateRendezVous, String nom, String prenom) {
+    public RendezVous(int id, int idUser, int idPediatre, Date dateRendezVous, String nom, String prenom,String heure) {
         this.id = id;
         this.idUser = idUser;
         this.idPediatre = idPediatre;
         this.dateRendezVous = dateRendezVous;
         this.nom = nom;
         this.prenom = prenom;
-    }
+        this.heure = heure;    }
 
-    public RendezVous(int idUser, int idPediatre, Date dateRendezVous, String nom, String prenom) {
+    public RendezVous(int idUser, int idPediatre, Date dateRendezVous, String nom, String prenom,String heure) {
         this.idUser = idUser;
         this.idPediatre = idPediatre;
         this.dateRendezVous = dateRendezVous;
         this.nom = nom;
         this.prenom = prenom;
+        this.heure = heure;
+    }
+
+    public String getHeure() {
+        return heure;
+    }
+
+    public void setHeure(String heure) {
+        this.heure = heure;
     }
 
     public int getId() {

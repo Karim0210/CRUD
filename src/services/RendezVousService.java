@@ -23,7 +23,7 @@ public class RendezVousService {
     
     public void AjouterRendezVous( RendezVous r) throws SQLException
     {
-        String req="INSERT INTO rendez_vous (idUser,idPediatre,dateRendezVous,nom,prenom) VALUES(?,?,?,?,?)" ; 
+        String req="INSERT INTO rendez_vous (idUser,idPediatre,dateRendezVous,nom,prenom,heure) VALUES(?,?,?,?,?,?)" ; 
         try { 
             PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
              
@@ -32,6 +32,7 @@ public class RendezVousService {
             ste.setDate(3, (Date) r.getDateRendezVous());
             ste.setString(4,r.getNom());
             ste.setString(5,r.getPrenom());
+            ste.setString(6,r.getHeure());
             
             
             ste.executeUpdate() ; 
@@ -40,10 +41,10 @@ public class RendezVousService {
             System.out.println("probleme d'ajout");
         }
     }
-    public int getdate(int idPediatre,Date DateRendezVous) throws SQLException
+    public int getdate(int idPediatre,Date DateRendezVous,String heure) throws SQLException
     {
         int d=0;
-        String req="select count(id) from rendez_vous where idPediatre="+idPediatre+" && dateRendezVous='"+DateRendezVous+" ";
+        String req="select count(id) from rendez_vous where (idPediatre="+idPediatre+" AND dateRendezVous='"+DateRendezVous+"' AND heure='"+heure+"')";
         PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
         ResultSet result =ste.executeQuery() ; 
         while(result.next())

@@ -5,15 +5,23 @@
  */
 package GUI;
 
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXProgressBar;
 import entities.RendezVous;
 import java.io.File;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
@@ -24,7 +32,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import services.RendezVousService;
+
 
 /**
  * FXML Controller class
@@ -34,7 +44,7 @@ import services.RendezVousService;
 public class RendezVousController implements Initializable {
 
     @FXML
-    private DatePicker date;
+    private DatePicker date;   
     @FXML
     private TextField nom;
     @FXML
@@ -46,12 +56,19 @@ public class RendezVousController implements Initializable {
     private Button btnaccueil;
     @FXML
     private Button btnlistepediatre;
+    @FXML
+    private JFXDatePicker heure;
+    @FXML
+    private JFXProgressBar barprogresse;
+    
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         barprogresse.setVisible(false);
+         
          btnaccueil.setStyle(
                 
                
@@ -70,15 +87,43 @@ public class RendezVousController implements Initializable {
 
     @FXML
     private void rendezvous(ActionEvent event) throws SQLException {
+        //barprogresse.setVisible(true);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("SORRY");
         RendezVousService rs=new RendezVousService();
         RendezVous r=new RendezVous();
         r.setIdPediatre(ProfilPediatreController.getInsatance().pediatre().getId());
         r.setIdUser(1);
         r.setNom(nom.getText());
         r.setPrenom(prenom.getText());
+        r.setHeure(heure.getTime().toString());
         r.setDateRendezVous(java.sql.Date.valueOf(date.getValue()));
-        rs.AjouterRendezVous(r);
-        s.send("abdelkarim.turki@gmail.com", "RendezVousPediatre", "Cordialement.", "all.for.kids.pidev@gmail.com", "all4kids",r);
+        try {
+            System.out.println(rs.getdate(r.getIdPediatre(), (Date) r.getDateRendezVous(),r.getHeure()));
+            if(rs.getdate(r.getIdPediatre(), (Date) r.getDateRendezVous(),r.getHeure())>=1)
+            {
+                alert.setContentText("sorry this time is already reserved");
+                alert.showAndWait();
+            }
+            else
+        {
+           rs.AjouterRendezVous(r);
+           
+//            s.send("abdelkarim.turki@gmail.com", "RendezVousPediatre", "Cordialement.", "all.for.kids.pidev@gmail.com", "all4kids",r);
+//             Parent root= FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
+//             Scene scene = new Scene(root);
+//             Stage stage = new Stage();
+//             stage.setScene(scene);
+//             stage.show();
+       
+       //((Node) (event.getSource())).getScene().getWindow().hide();
+        }
+            
+        } catch (Exception e) {
+            alert.setContentText("sorry s");
+            alert.showAndWait();
+        }
+        
         
                 
     }
@@ -169,6 +214,11 @@ public class RendezVousController implements Initializable {
             }
         }
           }
+    }
+
+    @FXML
+    private void afficherBar(MouseEvent event) {
+        barprogresse.setVisible(true);
     }
     
     

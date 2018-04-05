@@ -27,9 +27,9 @@
             <Font name="Ubuntu Bold" size="20.0" />
          </font></Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ea624c" height="77.0" layoutX="197.0" stroke="BLACK" strokeType="INSIDE" width="809.0" />
-      <Pane prefHeight="653.0" prefWidth="197.0" style="-fx-background-color: #666;">
+      <Pane prefHeight="653.0" prefWidth="197.0" style="-fx-background-color: #666666;">
          <children>
-            <Label layoutX="4.0" layoutY="112.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="BABYSITTERS" textFill="#f2f2f2">
+            <Label layoutX="4.0" layoutY="112.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="BABYSITTERS" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Glow />
                </effect>
             </Label>
-            <Label layoutX="4.0" layoutY="190.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="HEALTH CARE" textFill="#f2f2f2">
+            <Label layoutX="4.0" layoutY="190.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="HEALTH CARE" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -69,7 +69,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label layoutX="5.0" layoutY="268.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="EDUCATION" textFill="#f2f2f2">
+            <Label layoutX="5.0" layoutY="268.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="EDUCATION" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -84,7 +84,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label layoutX="5.0" layoutY="346.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="EVENTS" textFill="#f2f2f2">
+            <Label layoutX="5.0" layoutY="346.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="EVENTS" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>

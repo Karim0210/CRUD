@@ -22,6 +22,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -121,9 +122,12 @@ public class ListePediatreController implements Initializable {
             
             /////css////
             Likes.setWrappingWidth(200);
-            Nom.setFont(Font.font ("Arial Black", 14));
-            Likes.setFont(Font.font ("Arial Black", 14));
-            Specialite.setFont(Font.font ("Arial Black", 14));
+            Nom.setFont(Font.font ("Ubuntu Bold", 15));
+            Likes.setFont(Font.font ("Ubuntu Bold", 15));
+            Specialite.setFont(Font.font ("Ubuntu Bold", 15));
+            
+            Nom.setStyle("-fx-fill: #1bb4b9");
+            Specialite.setStyle("-fx-fill: #1bb4b9");
             //// fin css ////
             
             ////img////
@@ -147,8 +151,13 @@ public class ListePediatreController implements Initializable {
             pan1.getChildren().add(img);
             pan1.setPrefHeight(50);
             
+            HBox hbox = new HBox();
+            hbox.setSpacing(20);
+            hbox.setTranslateX(120);
+            hbox.setTranslateY(35);
             pan2.getChildren().add(Nom);
             pan2.setPrefHeight(50);
+            hbox.getChildren().add(pan2);
             Rating rating = new Rating();
             try
                 {
@@ -170,20 +179,24 @@ public class ListePediatreController implements Initializable {
             
             
             pan4.getChildren().add(rating);
+            pan4.setTranslateX(450);
+            pan4.setTranslateY(13);
             pan4.setPrefHeight(50);
             
             pan3.getChildren().add(Specialite);
             pan3.setPrefHeight(50);
-            
+            hbox.getChildren().add(pan3);
+            hbox.getChildren().add(pan4);
+            hbox.setAlignment(Pos.CENTER);
             pan.setUserData(p); //// emplacement pan ///
             pan.getChildren().add(pan1);
+            pan.getChildren().add(hbox);
             pan.getChildren().get(0).setLayoutX(0);
-            pan.getChildren().add(pan2);
-            pan.getChildren().get(1).setLayoutX(110);
-            pan.getChildren().add(pan3);
-            pan.getChildren().get(2).setLayoutX(250);
+           // pan.getChildren().add(pan2);
+           // pan.getChildren().get(1).setLayoutX(110);
+           // pan.getChildren().get(2).setLayoutX(250);
             pan.getChildren().add(pan4);
-            pan.getChildren().get(3).setLayoutX(450);
+           // pan.getChildren().get(3).setLayoutX(450);
             pan.setTranslateY(30);
             
            listviewpediatre.getItems().add(pan);
