@@ -110,8 +110,8 @@
             <DropShadow radius="15.19" width="41.76" />
          </effect>
       </Pane>
-      <Button fx:id="btnaccueil" layoutX="881.0" layoutY="26.0" mnemonicParsing="false" text="Accueil" textFill="#ea624c" />
-      <Button fx:id="btnlistepediatre" layoutX="969.0" layoutY="26.0" mnemonicParsing="false" text="Alimentation" textFill="#ea624c" />
+      <Button fx:id="btnaccueil" layoutX="881.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-radius: 4px;" text="Accueil" textFill="#ea624c" />
+      <Button fx:id="btnlistepediatre" layoutX="969.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-radius: 4px;" text="Alimentation" textFill="#ea624c" />
       <Text fill="WHITE" layoutX="1099.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des articles alimentaire">
          <font>
             <Font name="Ubuntu Bold" size="12.0" />
@@ -133,16 +133,16 @@
       <Label layoutX="701.0" layoutY="204.0" text="Autheur* :" />
       <Label layoutX="252.0" layoutY="279.0" text="Text* :" />
       <Label layoutX="252.0" layoutY="546.0" text="Type* :" />
-      <TextField fx:id="nomT" layoutX="326.0" layoutY="200.0" prefHeight="25.0" prefWidth="287.0" />
-      <TextField fx:id="prenomT" layoutX="775.0" layoutY="200.0" prefHeight="25.0" prefWidth="287.0" />
-      <TextField fx:id="emailT" layoutX="326.0" layoutY="279.0" prefHeight="193.0" prefWidth="287.0" />
-      <TextField fx:id="specialiteT" layoutX="326.0" layoutY="542.0" prefHeight="25.0" prefWidth="287.0" />
-      <ImageView fx:id="imgpediatre" fitHeight="235.0" fitWidth="318.0" layoutX="749.0" layoutY="279.0" onMouseClicked="#ajoutimage" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="titreT" layoutX="326.0" layoutY="200.0" prefHeight="25.0" prefWidth="287.0" />
+      <TextField fx:id="autheurT" layoutX="775.0" layoutY="200.0" prefHeight="25.0" prefWidth="287.0" />
+      <TextField fx:id="textT" layoutX="326.0" layoutY="279.0" prefHeight="193.0" prefWidth="287.0" />
+      <TextField fx:id="typeT" layoutX="326.0" layoutY="542.0" prefHeight="25.0" prefWidth="287.0" />
+      <ImageView fx:id="imgarticle" fitHeight="235.0" fitWidth="318.0" layoutX="749.0" layoutY="279.0" onMouseClicked="#ajoutimage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/profilimgupload.png" />
          </image>
       </ImageView>
-      <Button fx:id="ajouterbtn" layoutX="749.0" layoutY="610.0" mnemonicParsing="false" onAction="#ajouterPediatre" prefHeight="48.0" prefWidth="318.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 10px;" text="Ajouter" textFill="WHITE">
+      <Button fx:id="ajouterbtn" layoutX="749.0" layoutY="610.0" mnemonicParsing="false" onAction="#ajouterArticle" prefHeight="48.0" prefWidth="318.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 10px;" text="Ajouter" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold" size="25.0" />
          </font>

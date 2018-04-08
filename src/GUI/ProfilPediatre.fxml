@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="595.0" prefHeight="653.0" prefWidth="1000.0" style="-fx-background-color: #fff; -fx-max-height: 40px; -fx-border-color: #ddd;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProfilPediatreController">
+<AnchorPane id="AnchorPane" maxHeight="595.0" prefHeight="653.0" prefWidth="1000.0" style="-fx-background-color: #fff; -fx-max-height: 40px; -fx-border-color: #ddd;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProfilPediatreController">
    <children>
       <ImageView fx:id="imgpediatre" fitHeight="108.0" fitWidth="132.0" layoutX="257.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -47,7 +47,7 @@
             <Font name="Fredoka One" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="542.0" layoutY="408.0" prefHeight="28.0" prefWidth="256.0" text="Parcous professionnel" textFill="#1bb4b9">
+      <Label layoutX="542.0" layoutY="408.0" prefHeight="28.0" prefWidth="256.0" text="Parcours professionnel" textFill="#1bb4b9">
          <font>
             <Font name="Fredoka One" size="22.0" />
          </font>
@@ -213,7 +213,7 @@
          </image>
       </ImageView>
       <Button fx:id="btnaccueil" layoutX="721.0" layoutY="26.0" mnemonicParsing="false" text="Accueil" textFill="#ea624c" />
-      <Button fx:id="btnlistepediatre" layoutX="809.0" layoutY="26.0" mnemonicParsing="false" text="Listes Pediatre" textFill="#ea624c" />
+      <Button fx:id="btnlistepediatre" layoutX="809.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnreturn" text="Listes Pediatre" textFill="#ea624c" />
       <Text fill="WHITE" layoutX="939.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profil">
          <font>
             <Font name="Ubuntu Bold" size="12.0" />

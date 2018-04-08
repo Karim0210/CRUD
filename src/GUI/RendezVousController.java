@@ -7,11 +7,18 @@ package GUI;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXProgressBar;
+import com.sun.org.apache.xpath.internal.operations.Number;
 import entities.RendezVous;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -33,6 +40,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import services.RendezVousService;
 
 
@@ -60,8 +68,16 @@ public class RendezVousController implements Initializable {
     private JFXDatePicker heure;
     @FXML
     private JFXProgressBar barprogresse;
+    @FXML
+    private ImageView erreurnom;
+    @FXML
+    private ImageView erreurprenom;
+    @FXML
+    private ImageView erreurdate;
+    @FXML
+    private ImageView erreurheure;
     
-    
+    Boolean verif=true;
     /**
      * Initializes the controller class.
      */
@@ -83,12 +99,37 @@ public class RendezVousController implements Initializable {
                "-fx-border-radius: 4px;"+
                "-fx-padding: 4px 10px;"
         );
+        
+        erreurnom.setVisible(false);
+        erreurprenom.setVisible(false);
+        erreurdate.setVisible(false);
+        erreurheure.setVisible(false);
+        
     }    
 
     @FXML
     private void rendezvous(ActionEvent event) throws SQLException {
-        //barprogresse.setVisible(true);
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        
+        verif=true;
+        if(nom.getText().equals("") || nom.getText().contains(" ") )
+        {erreurnom.setVisible(true);verif=false;}
+        else{erreurnom.setVisible(false);}
+       
+        if(prenom.getText().equals("") || prenom.getText().contains(" ") )
+        {erreurprenom.setVisible(true);verif=false;}
+        else{erreurprenom.setVisible(false);}
+       
+        if(date.getValue() == null)
+        {erreurdate.setVisible(true);verif=false;}
+        else{erreurdate.setVisible(false);}
+        
+//        if(heure.getValue()== null)
+//        {erreurheure.setVisible(true);verif=false;}
+//        else{erreurheure.setVisible(false);}
+        
+        if(verif== true)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("SORRY");
         RendezVousService rs=new RendezVousService();
         RendezVous r=new RendezVous();
@@ -96,33 +137,77 @@ public class RendezVousController implements Initializable {
         r.setIdUser(1);
         r.setNom(nom.getText());
         r.setPrenom(prenom.getText());
-        r.setHeure(heure.getTime().toString());
+        r.setHeure(java.sql.Time.valueOf(heure.getTime()));
         r.setDateRendezVous(java.sql.Date.valueOf(date.getValue()));
+        
+        System.out.println(heure.getTime().getHour());
         try {
-            System.out.println(rs.getdate(r.getIdPediatre(), (Date) r.getDateRendezVous(),r.getHeure()));
-            if(rs.getdate(r.getIdPediatre(), (Date) r.getDateRendezVous(),r.getHeure())>=1)
+            //System.out.println(rs.getdate(r.getIdPediatre(), (Date) r.getDateRendezVous(),r.getHeure()));
+            if(rs.getdate(r.getIdPediatre(), (Date) r.getDateRendezVous(),heure.getTime())>=1)
             {
                 alert.setContentText("sorry this time is already reserved");
                 alert.showAndWait();
             }
+            else if ((heure.getTime().getHour() > 8) && (heure.getTime().getHour() < 20)){
+                rs.AjouterRendezVous(r);
+                 s.send("abdelkarim.turki@gmail.com", "RendezVousPediatre", "Cordialement.", "all.for.kids.pidev@gmail.com", "all4kids",r);
+                
+               //////////sms////////
+            
+            
+             try {
+			// Construct data
+			String apiKey = "apikey=" + "8awYUh/BZ3w-6KsXjFL5ovBVz1IxvOhFY0qhXdk9zu";
+			//String message = "&message=" + "vous avez pris un rendez-vous le"+date+"à"+heure+" soyez le bienvenu";
+                        String message = "&message=" + "vous avez pris un rendez-vous le "+r.getDateRendezVous()+" à "+r.getHeure()+". Soyez le bienvenu";
+
+			String sender = "&sender=" + "All4Kids";
+			String numbers = "&numbers=" + "0021653810991";
+			
+			// Send data
+			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+			String data = apiKey + numbers + message + sender;
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+			conn.getOutputStream().write(data.getBytes("UTF-8"));
+			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			final StringBuffer stringBuffer = new StringBuffer();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				
+                                JOptionPane.showMessageDialog(null, "message"+line);
+			}
+			rd.close();
+			
+			} catch (Exception e) {
+			
+                        JOptionPane.showMessageDialog(null, e);
+		}
+             
+                
+                
+             Parent root= FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
+             Scene scene = new Scene(root);
+             Stage stage = new Stage();
+             stage.setScene(scene);
+             stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide();
+            }
             else
         {
-           rs.AjouterRendezVous(r);
-           
-//            s.send("abdelkarim.turki@gmail.com", "RendezVousPediatre", "Cordialement.", "all.for.kids.pidev@gmail.com", "all4kids",r);
-//             Parent root= FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
-//             Scene scene = new Scene(root);
-//             Stage stage = new Stage();
-//             stage.setScene(scene);
-//             stage.show();
-       
-       //((Node) (event.getSource())).getScene().getWindow().hide();
+            alert.setContentText("sorry pediatre is close");
+                alert.showAndWait();
+               
         }
             
         } catch (Exception e) {
             alert.setContentText("sorry s");
             alert.showAndWait();
         }
+        }
+        
         
         
                 

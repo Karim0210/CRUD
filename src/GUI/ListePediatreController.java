@@ -110,7 +110,7 @@ public class ListePediatreController implements Initializable {
         listviewpediatre.getItems().clear();
         l = ps.selectPediatre();
         
-        l.stream().forEach((Pediatre p)->{
+        l.stream().filter(e->e.getDemande()==1).forEach((Pediatre p)->{
             
             Text fNom=new Text("Nom : ");
             Text fLikes=new Text("Likes : ");
@@ -236,6 +236,8 @@ public class ListePediatreController implements Initializable {
        Stage stage = new Stage();
        stage.setScene(scene);
        stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide();
         
       
     }
@@ -260,7 +262,7 @@ public class ListePediatreController implements Initializable {
         listviewpediatre.getItems().clear();
         l = ps.selectPediatre();
         
-        l.stream().sorted((a,b)-> b.getRating() - a.getRating()).limit(3).forEach(p->{
+        l.stream().filter(e->e.getDemande()==1).sorted((a,b)-> b.getRating() - a.getRating()).limit(3).forEach(p->{
             Text fNom=new Text("Nom : ");
             Text fLikes=new Text("Likes : ");
             Text fSpecialite=new Text("Specialite : ");

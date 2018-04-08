@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,6 +71,24 @@ public class AjouterPediatreController implements Initializable {
     private Button btnaccueil;
     @FXML
     private Button btnlistepediatre;
+    @FXML
+    private ImageView erreurnom;
+    @FXML
+    private ImageView erreurprenom;
+    @FXML
+    private ImageView erreuremail;
+    @FXML
+    private ImageView erreurspecialite;
+    @FXML
+    private ImageView erreurnum;
+    @FXML
+    private ImageView erreuradresse;
+    @FXML
+    private ImageView erreurparcours;
+    @FXML
+    private ImageView erreurformation;
+    @FXML
+    private ImageView erreurdescription;
     
     
 
@@ -92,10 +111,79 @@ public class AjouterPediatreController implements Initializable {
                "-fx-border-radius: 4px;"+
                "-fx-padding: 4px 10px;"
         );
+        
+        erreurnom.setVisible(false);
+        erreurprenom.setVisible(false);
+        erreuremail.setVisible(false);
+        erreuradresse.setVisible(false);
+        erreurdescription.setVisible(false);
+        erreurformation.setVisible(false);
+        erreurnum.setVisible(false);
+        erreurspecialite.setVisible(false);
+        erreurparcours.setVisible(false);
+        
+        
+        
+        
+        
     }    
+    
+    public boolean isValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
+                + "[a-zA-Z0-9_+&*-]+)*@"
+                + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                + "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null) {
+            return false;
+        }
+        return pat.matcher(email).matches();
+    }
 
     @FXML
     private void ajouterPediatre(ActionEvent event) throws IOException {
+        
+        Boolean verif = true;
+        if(nomT.getText().equals("") || nomT.getText().contains(" ") )
+        {erreurnom.setVisible(true);verif=false;}
+        else{erreurnom.setVisible(false);}
+       
+        if(prenomT.getText().equals("") || prenomT.getText().contains(" ") )
+        {erreurprenom.setVisible(true);verif=false;}
+        else{erreurprenom.setVisible(false);}
+        
+        if(emailT.getText().equals("") || emailT.getText().contains(" ") || isValid(emailT.getText())==false )
+        {erreuremail.setVisible(true);verif=false;}
+        else{erreuremail.setVisible(false);}
+        
+         if(specialiteT.getText().equals("") || specialiteT.getText().contains(" ") )
+        {erreurspecialite.setVisible(true);verif=false;}
+        else{erreurspecialite.setVisible(false);}
+          
+         if(numT.getText().equals("") || numT.getText().contains(" ") )
+        {erreurnum.setVisible(true);verif=false;}
+        else{erreurnum.setVisible(false);}
+         
+         if(parcoursT.getText().equals("") || parcoursT.getText().contains(" ") )
+        {erreurparcours.setVisible(true);verif=false;}
+        else{erreurparcours.setVisible(false);}
+          
+         if(formationT.getText().equals("") || formationT.getText().contains(" ") )
+        {erreurformation.setVisible(true);verif=false;}
+        else{erreurformation.setVisible(false);}
+           
+         if(descriptionT.getText().equals("") || descriptionT.getText().contains(" ") )
+        {erreurdescription.setVisible(true);verif=false;}
+        else{erreurdescription.setVisible(false);}
+            
+         if(adresseT.getText().equals("") || adresseT.getText().contains(" ") )
+        {erreuradresse.setVisible(true);verif=false;}
+        else{erreuradresse.setVisible(false);}
+       
+        
+        
+        
         
         PediatreService ps = new PediatreService();
         
@@ -120,6 +208,7 @@ public class AjouterPediatreController implements Initializable {
         p.setDescription(description);
         p.setAdresse(adresse);
         p.setPrix(0);
+        p.setDemande(0);
         p.setImage(nom+prenom+".jpg");
         
        

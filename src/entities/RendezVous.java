@@ -6,6 +6,7 @@
 package entities;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -21,12 +22,12 @@ public class RendezVous {
     private Date dateRendezVous;
     private String nom;
     private String prenom;
-    private String heure;
+    private Time heure;
 
     public RendezVous() {
     }
 
-    public RendezVous(int id, int idUser, int idPediatre, Date dateRendezVous, String nom, String prenom,String heure) {
+    public RendezVous(int id, int idUser, int idPediatre, Date dateRendezVous, String nom, String prenom,Time heure) {
         this.id = id;
         this.idUser = idUser;
         this.idPediatre = idPediatre;
@@ -35,7 +36,7 @@ public class RendezVous {
         this.prenom = prenom;
         this.heure = heure;    }
 
-    public RendezVous(int idUser, int idPediatre, Date dateRendezVous, String nom, String prenom,String heure) {
+    public RendezVous(int idUser, int idPediatre, Date dateRendezVous, String nom, String prenom,Time heure) {
         this.idUser = idUser;
         this.idPediatre = idPediatre;
         this.dateRendezVous = dateRendezVous;
@@ -44,11 +45,11 @@ public class RendezVous {
         this.heure = heure;
     }
 
-    public String getHeure() {
+    public Time getHeure() {
         return heure;
     }
 
-    public void setHeure(String heure) {
+    public void setHeure(Time heure) {
         this.heure = heure;
     }
 

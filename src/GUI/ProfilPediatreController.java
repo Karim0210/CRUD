@@ -243,5 +243,17 @@ public class ProfilPediatreController implements Initializable {
         }
           }
     }
+
+    @FXML
+    private void btnreturn(ActionEvent event) throws IOException {
+        
+       Parent root= FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide(); 
+    }
     
 }

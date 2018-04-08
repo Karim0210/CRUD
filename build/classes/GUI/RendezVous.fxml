@@ -155,5 +155,25 @@
       <JFXDatePicker fx:id="date" defaultColor="#1bb4b9" layoutX="509.0" layoutY="378.0" prefHeight="31.0" prefWidth="239.0" />
       <JFXDatePicker fx:id="heure" defaultColor="#1bb4b9" layoutX="509.0" layoutY="464.0" prefHeight="31.0" prefWidth="239.0" showTime="true" />
       <JFXProgressBar fx:id="barprogresse" layoutX="513.0" layoutY="629.0" />
+      <ImageView fx:id="erreurnom" fitHeight="31.0" fitWidth="20.0" layoutX="755.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="erreurprenom" fitHeight="31.0" fitWidth="20.0" layoutX="755.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="erreurdate" fitHeight="31.0" fitWidth="20.0" layoutX="754.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="erreurheure" fitHeight="31.0" fitWidth="20.0" layoutX="750.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

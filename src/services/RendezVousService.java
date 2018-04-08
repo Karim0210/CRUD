@@ -10,6 +10,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalTime;
 import static services.PediatreService.ds;
 import util.DataSource;
 
@@ -32,7 +35,7 @@ public class RendezVousService {
             ste.setDate(3, (Date) r.getDateRendezVous());
             ste.setString(4,r.getNom());
             ste.setString(5,r.getPrenom());
-            ste.setString(6,r.getHeure());
+            ste.setTime(6,r.getHeure());
             
             
             ste.executeUpdate() ; 
@@ -41,10 +44,17 @@ public class RendezVousService {
             System.out.println("probleme d'ajout");
         }
     }
-    public int getdate(int idPediatre,Date DateRendezVous,String heure) throws SQLException
+    public int getdate(int idPediatre,Date DateRendezVous,LocalTime heure) throws SQLException
     {
+        Time timemax = java.sql.Time.valueOf(heure);
+        timemax.setMinutes(timemax.getMinutes() +30);
+        Time timemin = java.sql.Time.valueOf(heure);
+        timemin.setMinutes(timemin.getMinutes() -30);
+        
+        
+       
         int d=0;
-        String req="select count(id) from rendez_vous where (idPediatre="+idPediatre+" AND dateRendezVous='"+DateRendezVous+"' AND heure='"+heure+"')";
+        String req="select count(id) from rendez_vous where (idPediatre="+idPediatre+" AND dateRendezVous='"+DateRendezVous+"' AND heure BETWEEN '"+timemin+"' AND '"+timemax+"' )";
         PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
         ResultSet result =ste.executeQuery() ; 
         while(result.next())
