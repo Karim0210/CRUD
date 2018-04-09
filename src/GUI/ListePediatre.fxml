@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListePediatreController">
+<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListePediatreController">
    <children>
       <ListView fx:id="listviewpediatre" layoutX="263.0" layoutY="103.0" onMouseClicked="#handle" prefHeight="476.0" prefWidth="698.0" />
       <Button fx:id="toppediatre" layoutX="789.0" layoutY="599.0" mnemonicParsing="false" onMouseClicked="#top" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 10px;" text="Top 3" textFill="WHITE">
@@ -36,14 +36,14 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverImage" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon1.png" />
+                        <Image url="@../images/icon1.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Label>
             <ImageView fitHeight="15.0" fitWidth="28.0" layoutX="154.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/menu.png" />
+                  <Image url="@../images/menu.png" />
                </image>
                <effect>
                   <Glow />
@@ -64,7 +64,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon3.png" />
+                        <Image url="@../images/icon3.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -79,7 +79,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon2.png" />
+                        <Image url="@../images/icon2.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -91,7 +91,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon41.png" />
+                        <Image url="@../images/icon41.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -109,7 +109,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverMenu" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon6.png" />
+                        <Image url="@../images/icon6.png" />
                      </image>
                   </ImageView>
                </graphic>

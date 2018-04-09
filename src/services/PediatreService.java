@@ -97,6 +97,19 @@ public class PediatreService {
         }
     }
     
+    public void modifierQuiz(Pediatre p)
+    {
+        
+        
+      String req="update pediatre set quiz='"+p.getQuiz()+"' where id="+p.getId();  
+       
+        try {
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ste.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
      
     public void modifierPediatre (Pediatre p)
     {

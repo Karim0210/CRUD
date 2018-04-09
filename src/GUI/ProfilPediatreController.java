@@ -75,7 +75,7 @@ public class ProfilPediatreController implements Initializable {
     /**
      * Initializes the controller class.
      */    
-     public ProfilPediatreController()
+    public ProfilPediatreController()
     {
         instance = this;
     }
@@ -254,6 +254,19 @@ public class ProfilPediatreController implements Initializable {
        stage.show();
        
        ((Node) (event.getSource())).getScene().getWindow().hide(); 
+    }
+
+    @FXML
+    private void consulterPediatre(ActionEvent event) throws IOException {
+        
+       Parent root= FXMLLoader.load(getClass().getResource("ConsulterPediatre.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+       
+       
+
     }
     
 }

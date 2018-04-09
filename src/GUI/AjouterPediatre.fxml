@@ -53,14 +53,14 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverImage" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon1.png" />
+                        <Image url="@../images/icon1.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Label>
             <ImageView fitHeight="15.0" fitWidth="28.0" layoutX="154.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/menu.png" />
+                  <Image url="@../images/menu.png" />
                </image>
                <effect>
                   <Glow />
@@ -81,7 +81,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon3.png" />
+                        <Image url="@../images/icon3.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -96,7 +96,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon2.png" />
+                        <Image url="@../images/icon2.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -108,7 +108,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon41.png" />
+                        <Image url="@../images/icon41.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -126,7 +126,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverMenu" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon6.png" />
+                        <Image url="@../images/icon6.png" />
                      </image>
                   </ImageView>
                </graphic>

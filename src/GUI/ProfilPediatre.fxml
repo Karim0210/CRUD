@@ -104,14 +104,14 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverImage" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon1.png" />
+                        <Image url="@../images/icon1.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Label>
             <ImageView fitHeight="15.0" fitWidth="28.0" layoutX="154.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/menu.png" />
+                  <Image url="@../images/menu.png" />
                </image>
                <effect>
                   <Glow />
@@ -132,7 +132,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon3.png" />
+                        <Image url="@../images/icon3.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -147,7 +147,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon2.png" />
+                        <Image url="@../images/icon2.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -159,7 +159,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon41.png" />
+                        <Image url="@../images/icon41.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -177,7 +177,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverMenu" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon6.png" />
+                        <Image url="@../images/icon6.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -187,7 +187,7 @@
             <DropShadow radius="15.19" width="41.76" />
          </effect>
       </Pane>
-      <Button fx:id="btnconsulter" layoutX="754.0" layoutY="165.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #1bb4b9; -fx-border-radius: 4px; -fx-padding: 4px 10px; -fx-background-radius: 10px;" text="Consulter" textFill="#f8f7f7">
+      <Button fx:id="btnconsulter" layoutX="754.0" layoutY="165.0" mnemonicParsing="false" onAction="#consulterPediatre" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #1bb4b9; -fx-border-radius: 4px; -fx-padding: 4px 10px; -fx-background-radius: 10px;" text="Consulter" textFill="#f8f7f7">
          <font>
             <Font name="Ubuntu Bold" size="13.0" />
          </font>

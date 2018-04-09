@@ -1,14 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" fx:id="karim" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ConsulterPediatreController">
    <children>
-      <Label layoutX="123.0" layoutY="61.0" />
-      <Text fx:id="tminute" layoutX="160.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Button fx:id="btnstop" layoutX="328.0" layoutY="196.0" mnemonicParsing="false" onAction="#terminerAppel" text="terminer" />
+      <Button fx:id="btnstop" layoutX="329.0" layoutY="183.0" mnemonicParsing="false" onAction="#terminerAppel" prefHeight="30.0" prefWidth="119.0" text="   Raccrocher">
+         <graphic>
+            <ImageView fitHeight="106.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons_phone.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Fredoka One" size="12.0" />
+         </font></Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ea624c" height="77.0" layoutX="196.0" stroke="BLACK" strokeType="INSIDE" width="809.0" />
+      <Pane prefHeight="653.0" prefWidth="197.0" style="-fx-background-color: #666666;">
+         <children>
+            <Label layoutX="4.0" layoutY="112.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="BABYSITTERS" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverImage" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icon1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <ImageView fitHeight="15.0" fitWidth="28.0" layoutX="154.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/menu.png" />
+               </image>
+               <effect>
+                  <Glow />
+               </effect>
+            </ImageView>
+            <Label layoutX="86.0" layoutY="73.0" text="MENU" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Bold" size="20.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Label>
+            <Label layoutX="4.0" layoutY="190.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="HEALTH CARE" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icon3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label layoutX="5.0" layoutY="268.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="EDUCATION" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icon2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label layoutX="5.0" layoutY="346.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="EVENTS" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icon41.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Line endX="100.0" layoutX="96.0" layoutY="111.0" startX="-100.0" stroke="#f2f2f2" />
+            <Line endX="-20.0" layoutX="106.0" layoutY="189.0" opacity="0.52" startX="-100.0" stroke="#f2f2f2" />
+            <Line endX="-20.0" layoutX="105.0" layoutY="267.0" opacity="0.52" startX="-100.0" stroke="#f2f2f2" />
+            <Label layoutX="5.0" layoutY="424.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="SHOPS" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverMenu" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icon6.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow radius="15.19" width="41.76" />
+         </effect>
+      </Pane>
+      <Button fx:id="btnaccueil" layoutX="721.0" layoutY="26.0" mnemonicParsing="false" text="Accueil" textFill="#ea624c" />
+      <Text fill="WHITE" layoutX="820.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consulter Pediatre">
+         <font>
+            <Font name="Ubuntu Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="791.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;" />
+      <Text fill="WHITE" layoutX="249.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consulter Pediatre">
+         <font>
+            <Font name="Ubuntu Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="tminute" fill="#1bb4b9" layoutX="328.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+         <font>
+            <Font name="Fredoka One" size="31.0" />
+         </font>
+      </Text>
+      <Label fx:id="warning" alignment="CENTER" layoutX="328.0" layoutY="243.0" prefHeight="77.0" prefWidth="474.0" style="-fx-background-color: #ea624c; -fx-background-radius: 10px;" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Bold" size="12.0" />
+         </font>
+      </Label>
+      <Pane fx:id="qpane" layoutX="224.0" layoutY="243.0" prefHeight="299.0" prefWidth="774.0">
+         <children>
+            <Text fx:id="question" fill="#1bb4b9" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Questions :">
+               <font>
+                  <Font name="Fredoka One" size="31.0" />
+               </font>
+            </Text>
+            <Text layoutX="32.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="est-ce que vous etiez satisfaits par la consultation ?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="31.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="est-ce que vous trouvez le prix de la consultation est raisonable ?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="32.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="est-ce que vous avez eu des problèmes de communication avec votre pédiatre ?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="34.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="etes-vous prêts à faire une autre consultation avec votre pédiatre ?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <JFXToggleButton fx:id="q1" layoutX="688.0" layoutY="63.0" text=" " toggleColor="WHITE" toggleLineColor="#1bb4b9" unToggleLineColor="#ea624c" />
+            <JFXToggleButton fx:id="q2" layoutX="688.0" layoutY="109.0" text=" " toggleColor="WHITE" toggleLineColor="#1bb4b9" unToggleLineColor="#ea624c" />
+            <JFXToggleButton fx:id="q3" layoutX="688.0" layoutY="159.0" text=" " toggleColor="WHITE" toggleLineColor="#1bb4b9" unToggleLineColor="#ea624c" />
+            <JFXToggleButton fx:id="q4" layoutX="688.0" layoutY="205.0" text=" " toggleColor="WHITE" toggleLineColor="#1bb4b9" unToggleLineColor="#ea624c" />
+            <JFXButton fx:id="validerquestion" layoutX="31.0" layoutY="261.0" onAction="#calculernote" prefHeight="25.0" prefWidth="529.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 5px;" text="Valider" textFill="WHITE">
+               <font>
+                  <Font name="Ubuntu Bold" size="15.0" />
+               </font></JFXButton>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
