@@ -5,7 +5,10 @@
  */
 package services;
 
+import Entities.User;
 import entities.Pediatre;
+import entities.RendezVous;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static services.RendezVousService.ds;
 import util.DataSource;
 
 /**
@@ -23,6 +27,83 @@ import util.DataSource;
 public class PediatreService {
     
     static DataSource ds =DataSource.getInstance(); 
+    
+    
+    public void AjouterLikes(Pediatre p,User u) throws SQLException
+    {
+        String req="INSERT INTO likes (idUser,idPediatre) VALUES(?,?)" ; 
+        try { 
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+             
+            ste.setInt(1,u.getId()) ; 
+            ste.setInt(2,p.getId()) ; 
+            
+            ste.executeUpdate() ; 
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme d'ajout");
+        }
+    }
+    
+    
+    public void AjouterVues(Pediatre p,User u) throws SQLException
+    {
+        String req="INSERT INTO views(idUser,idPediatre) VALUES(?,?)" ; 
+        try { 
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+             
+            ste.setInt(1,u.getId()) ; 
+            ste.setInt(2,p.getId()) ; 
+            
+            ste.executeUpdate() ; 
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme d'ajout");
+        }
+    }
+    
+    public void RemoveLikes(Pediatre p,User u) throws SQLException
+    {
+        String req="DELETE  from likes where  idUser =? AND idPediatre=?" ; 
+        try { 
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+             
+            
+            ste.setInt(1,u.getId()) ;
+            ste.setInt(2,p.getId()) ;
+            ste.executeUpdate() ; 
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme de suppression");
+        }
+    }
+    
+    
+    public int veriflikes(Pediatre p , User u) throws SQLException
+    {
+        int d=0;
+        String req="select count(id) from likes where idPediatre="+p.getId()+" AND idUser="+u.getId();
+        PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+        ResultSet result =ste.executeQuery() ; 
+        while(result.next())
+        {
+            d=result.getInt(1);
+        }
+        return d;
+    }
+    
+     public int verifVues(Pediatre p , User u) throws SQLException
+    {
+        int d=0;
+        String req="select count(id) from views where idPediatre="+p.getId()+" AND idUser="+u.getId();
+        PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+        ResultSet result =ste.executeQuery() ; 
+        while(result.next())
+        {
+            d=result.getInt(1);
+        }
+        return d;
+    }
     
     
     public void ajouterPediatre (Pediatre p)

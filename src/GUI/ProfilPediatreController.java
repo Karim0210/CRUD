@@ -5,11 +5,15 @@
  */
 package GUI;
 
+import Entities.User;
 import entities.Pediatre;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,6 +76,9 @@ public class ProfilPediatreController implements Initializable {
     private Button btnaccueil;
     @FXML
     private Button btnlistepediatre;
+    User userinfo;
+    @FXML
+    private Button btndislike;
     /**
      * Initializes the controller class.
      */    
@@ -92,6 +99,10 @@ public class ProfilPediatreController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userinfo = LoginPageController.getInstance().userinfo();
+        PediatreService ps=new PediatreService();
+        
+
         btnaccueil.setStyle(
                 
                
@@ -107,8 +118,29 @@ public class ProfilPediatreController implements Initializable {
                "-fx-padding: 4px 10px;"
         );
         
+        
         setPediatre(ListePediatreController.getInsatance().pediatre());
         description.setWrappingWidth(600);
+        try {
+            System.out.println(ps.veriflikes(pinfo, userinfo));
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfilPediatreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            if(ps.veriflikes(pinfo, userinfo)>0)
+            {
+                btnlike.setVisible(false);
+                btndislike.setVisible(true);
+            }
+            if(ps.veriflikes(pinfo, userinfo)==0)
+            {
+                btnlike.setVisible(true);
+                btndislike.setVisible(false);
+            }
+            }
+         catch (SQLException ex) {
+            Logger.getLogger(ProfilPediatreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
               
     }    
 
@@ -144,12 +176,13 @@ public class ProfilPediatreController implements Initializable {
     }
 
     @FXML
-    private void like(ActionEvent event) {
+    private void like(ActionEvent event) throws SQLException {
         PediatreService ps=new PediatreService();
-        System.out.println(pinfo.getLikes());
         pinfo.setLikes(pinfo.getLikes()+1);
         ps.modifierlikes(pinfo);
+        ps.AjouterLikes(pinfo, userinfo);
         btnlike.setVisible(false);
+        btndislike.setVisible(true);
         this.nbrlikes.setText(String.valueOf(pinfo.getLikes()));
         
     }
@@ -267,6 +300,17 @@ public class ProfilPediatreController implements Initializable {
        
        
 
+    }
+
+    @FXML
+    private void dislike(ActionEvent event) throws SQLException {
+        PediatreService ps=new PediatreService();
+        pinfo.setLikes(pinfo.getLikes()-1);
+        ps.modifierlikes(pinfo);
+        ps.RemoveLikes(pinfo, userinfo);
+        btnlike.setVisible(true);
+        btndislike.setVisible(false);
+        this.nbrlikes.setText(String.valueOf(pinfo.getLikes()));
     }
     
 }

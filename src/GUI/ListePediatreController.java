@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Entities.User;
 import entities.Pediatre;
 import java.io.File;
 import java.io.IOException;
@@ -72,6 +73,8 @@ public class ListePediatreController implements Initializable {
     @FXML
     private Button btnaccueil;
     
+    User userinfo;
+    
     public ListePediatreController()
     {
         instance = this;
@@ -93,6 +96,7 @@ public class ListePediatreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userinfo = LoginPageController.getInstance().userinfo();
               btnaccueil.setStyle(
                "-fx-background-color: #ffffff;"+
                "-fx-border-radius: 4px;"+
@@ -211,7 +215,7 @@ public class ListePediatreController implements Initializable {
    
 
     @FXML
-    private void handle(MouseEvent event) throws IOException {
+    private void handle(MouseEvent event) throws IOException, SQLException {
         
 //
 
@@ -224,8 +228,14 @@ public class ListePediatreController implements Initializable {
        p=(Pediatre) listviewpediatre.getSelectionModel().
                 getSelectedItem().getUserData();
        
-        p.setVues(p.getVues()+1);
-        ps.modifierNbvue(p);
+        if(ps.verifVues(p,userinfo)==0)
+        {
+            ps.AjouterVues(p, userinfo);
+            p.setVues(p.getVues()+1);
+            ps.modifierNbvue(p);
+        }
+        
+        
         p.setRating((int)Math.round(ps.calculerRating(p)));
         ps.modifierRating(p);
         
