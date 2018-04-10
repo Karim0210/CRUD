@@ -181,5 +181,15 @@
                </font></JFXButton>
          </children>
       </Pane>
+      <Text fill="#1bb4b9" layoutX="665.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jetons :">
+         <font>
+            <Font name="Fredoka One" size="31.0" />
+         </font>
+      </Text>
+      <Label fx:id="nbJetons" layoutX="806.0" layoutY="135.0" text="Label">
+         <font>
+            <Font name="Ubuntu Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

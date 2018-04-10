@@ -104,6 +104,23 @@ public class UserService {
         
         return p;
      }
+    
+    
+     public void modifierNbJetons (User u)
+    {
+        
+        
+      String req="update user set nbJetons='"+u.getNbJetons()+"' where id="+u.getId();  
+       
+        try {
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
+            ste.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     public User CheckLogin(String username,String password) throws SQLException{
         
         String req = "Select * from user WHERE username ='"+username+"';";

@@ -112,7 +112,7 @@ public class AjouterArticleController implements Initializable {
         as.ajouterArticle(a);
         
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        Parent root= FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("ListeArticle.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);

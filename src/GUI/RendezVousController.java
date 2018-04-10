@@ -5,9 +5,12 @@
  */
 package GUI;
 
+import Entities.User;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXProgressBar;
+import com.jfoenix.controls.JFXTextField;
 import com.sun.org.apache.xpath.internal.operations.Number;
+import entities.Pediatre;
 import entities.RendezVous;
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,6 +42,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -55,9 +59,8 @@ public class RendezVousController implements Initializable {
     @FXML
     private DatePicker date;   
     @FXML
-    private TextField nom;
-    @FXML
-    private TextField prenom;
+    private Label nom;
+    private Label prenom;
     @FXML
     private Button btn;
     SendMail s;
@@ -69,9 +72,7 @@ public class RendezVousController implements Initializable {
     private JFXDatePicker heure;
     @FXML
     private JFXProgressBar barprogresse;
-    @FXML
     private ImageView erreurnom;
-    @FXML
     private ImageView erreurprenom;
     @FXML
     private ImageView erreurdate;
@@ -79,11 +80,23 @@ public class RendezVousController implements Initializable {
     private ImageView erreurheure;
     
     Boolean verif=true;
+    @FXML
+    private Label email;
+    @FXML
+    private AnchorPane an;
+    User userinfo;
+    @FXML
+    private ImageView erreurnum;
+    @FXML
+    private JFXTextField num;
+    
+    Pediatre p ;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        p = ProfilPediatreController.getInsatance().pediatre();
          barprogresse.setVisible(false);
          
          btnaccueil.setStyle(
@@ -101,10 +114,14 @@ public class RendezVousController implements Initializable {
                "-fx-padding: 4px 10px;"
         );
         
-        erreurnom.setVisible(false);
-        erreurprenom.setVisible(false);
+        erreurnum.setVisible(false);
         erreurdate.setVisible(false);
         erreurheure.setVisible(false);
+        userinfo = LoginPageController.getInstance().userinfo();
+        nom.setText(userinfo.getUsername());
+        email.setText(userinfo.getEmail());
+        
+        
         
     }    
 
@@ -112,13 +129,7 @@ public class RendezVousController implements Initializable {
     private void rendezvous(ActionEvent event) throws SQLException {
         
         verif=true;
-        if(nom.getText().equals("") || nom.getText().contains(" ") )
-        {erreurnom.setVisible(true);verif=false;}
-        else{erreurnom.setVisible(false);}
-       
-        if(prenom.getText().equals("") || prenom.getText().contains(" ") )
-        {erreurprenom.setVisible(true);verif=false;}
-        else{erreurprenom.setVisible(false);}
+        
        
         if(date.getValue() == null)
         {erreurdate.setVisible(true);verif=false;}
@@ -127,6 +138,10 @@ public class RendezVousController implements Initializable {
 //        if(heure.getValue()== null)
 //        {erreurheure.setVisible(true);verif=false;}
 //        else{erreurheure.setVisible(false);}
+        
+        if(num.getText()== null)
+        {erreurnum.setVisible(true);verif=false;}
+        else{erreurnum.setVisible(false);}
         
         if(verif== true)
         {
@@ -137,7 +152,6 @@ public class RendezVousController implements Initializable {
         r.setIdPediatre(ProfilPediatreController.getInsatance().pediatre().getId());
         r.setIdUser(1);
         r.setNom(nom.getText());
-        r.setPrenom(prenom.getText());
         r.setHeure(java.sql.Time.valueOf(heure.getTime()));
         r.setDateRendezVous(java.sql.Date.valueOf(date.getValue()));
         
@@ -151,7 +165,7 @@ public class RendezVousController implements Initializable {
             }
             else if ((heure.getTime().getHour() > 8) && (heure.getTime().getHour() < 20)){
                 rs.AjouterRendezVous(r);
-                 s.send("abdelkarim.turki@gmail.com", "RendezVousPediatre", "Cordialement.", "all.for.kids.pidev@gmail.com", "all4kids",r);
+                 s.send(email.getText(), "RendezVousPediatre", "Cordialement.", "all.for.kids.pidev@gmail.com", "all4kids",r);
                 
                //////////sms////////
             
@@ -160,10 +174,10 @@ public class RendezVousController implements Initializable {
 			// Construct data
 			String apiKey = "apikey=" + "8awYUh/BZ3w-6KsXjFL5ovBVz1IxvOhFY0qhXdk9zu";
 			//String message = "&message=" + "vous avez pris un rendez-vous le"+date+"à"+heure+" soyez le bienvenu";
-                        String message = "&message=" + "vous avez pris un rendez-vous le "+r.getDateRendezVous()+" à "+r.getHeure()+". Soyez le bienvenu";
+                        String message = "&message=" + "vous avez pris un rendez-vous avec le docteur"+p.getNom()+" "+p.getPrenom()+"  le "+r.getDateRendezVous()+" à "+r.getHeure()+". Soyez le bienvenu";
 
 			String sender = "&sender=" + "All4Kids";
-			String numbers = "&numbers=" + "0021653810991";
+			String numbers = "&numbers=" + "00216"+num.getText();
 			
 			// Send data
 			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();

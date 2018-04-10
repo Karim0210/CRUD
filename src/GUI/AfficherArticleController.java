@@ -5,29 +5,18 @@
  */
 package GUI;
 
-import Entities.User;
-import Services.UserService;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXToggleButton;
-import entities.Pediatre;
+import entities.Article;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
@@ -35,92 +24,53 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import services.PediatreService;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Karim
  */
-public class ConsulterPediatreController implements Initializable {
+public class AfficherArticleController implements Initializable {
 
-    @FXML
-    Text tminute = new Text();
-    
-    int i ;
-    
-    @FXML
-    private AnchorPane karim;
-    
-    LocalTime heure;
-    
-    AnimationTimer timer = new MyTimer();
-    
-    Time timemax = java.sql.Time.valueOf("00:00:00");
-    
-    Thread thread = new Thread();
-    
-    @FXML
-    private Button btnstop;
     @FXML
     private Button btnaccueil;
     @FXML
-    private Label warning;
+    private Button btnlistepediatre;
     @FXML
-    private Text question;
+    private ImageView imgarticle;
     @FXML
-    private JFXToggleButton q1;
+    private Label titre;
     @FXML
-    private JFXToggleButton q2;
+    private Label text;
     @FXML
-    private JFXToggleButton q3;
+    private Label titre1;
     @FXML
-    private JFXToggleButton q4;
-    @FXML
-    private JFXButton validerquestion;
-    @FXML
-    private Pane qpane;
+    private Label autheur;
     
-    User userinfo;
+    Article ainfo;
+
     /**
      * Initializes the controller class.
      */
-    int note;
-    Pediatre pinfo;
-    @FXML
-    private Label nbJetons;
-    
     @Override
-    public void initialize(URL url, ResourceBundle rb)  {
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        setArticle(ListeArticleController.getInsatance().article());
         
-        pinfo = ProfilPediatreController.getInsatance().pediatre();
-        userinfo = LoginPageController.getInstance().userinfo();
-        
-        
-        qpane.setVisible(false);
-        warning.setVisible(false);
-        
-        timemax = java.sql.Time.valueOf("00:00:00");
-        tminute.setText("00:00:00");
-        i=0;
-        note=0;
-        timer.start();
-        
-        
-
+    }    
     
+    private void setArticle(Article a) {
+        Image img=new Image("/images/"+a.getImage());
+        this.imgarticle.setImage(img);
+        this.titre.setText(a.getNom());
+        this.text.setText(a.getText());
+        this.autheur.setText(a.getAutheur());
         
-    } 
-
-    @FXML
-    private void terminerAppel(ActionEvent event) {
-        timer.stop();
-        qpane.setVisible(true);
+        ainfo = a;
+        
+        
         
     }
 
@@ -215,24 +165,8 @@ public class ConsulterPediatreController implements Initializable {
     }
 
     @FXML
-    private void calculernote(ActionEvent event) {
-        
-        PediatreService ps = new PediatreService();
-        
-        if(q1.isSelected() == true){note++;}
-        if(q2.isSelected() == true){note++;}
-        if(q3.isSelected() == true){note++;}
-        if(q4.isSelected() == true){note++;}
-        
-
-        pinfo.setQuiz(pinfo.getQuiz() + note);
-        ps.modifierQuiz(pinfo);
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-    }
-
-    @FXML
-    private void returnList(ActionEvent event) throws IOException  {
-       Parent root= FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
+    private void btnreturn(ActionEvent event) throws IOException {
+       Parent root= FXMLLoader.load(getClass().getResource("ListeArticle.fxml"));
        Scene scene = new Scene(root);
        Stage stage = new Stage();
        stage.setScene(scene);
@@ -240,50 +174,5 @@ public class ConsulterPediatreController implements Initializable {
        
        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-    
-  
-    
-    
-   
-        
-    
-    
-    public class MyTimer extends AnimationTimer {
-
-        UserService us = new UserService();
-        
-        @Override
-        public void handle(long now) {
-        
-            try {
-                doHandle();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ConsulterPediatreController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        public void doHandle() throws InterruptedException {
-            
-            timemax.setSeconds(timemax.getSeconds()+1);
-            
-            thread.sleep(1000);
-            tminute.setText(timemax.toString());
-            nbJetons.setText(String.valueOf(userinfo.getNbJetons()));
-            i++;
-            System.out.println(timemax.toString());
-            warning.setVisible(false);
-
-            if (i >= 10) {
-                warning.setText("Vous avez dépassé 5 min avec le pediatre. Vous devez payer 100.");
-                warning.setVisible(true);
-                userinfo.setNbJetons(userinfo.getNbJetons()-30);
-                us.modifierNbJetons(userinfo);
-                i=0;
-            }
-            
-        }
-        
-    }
-
     
 }

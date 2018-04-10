@@ -48,23 +48,12 @@ public class ArticleService {
     }
     
      
-    public static void modifierArticle (Article a ,int id)
+    public static void modifierArticle (Article a)
     {
-    String req="UPDATE article SET nom=?,autheur=?,vues=?,text=?,likes=?,image=?,video=?,type=?,rating=? WHERE id =?" ; 
+    String req="UPDATE article SET nom='"+a.getNom()+"',autheur='"+a.getAutheur()+"',text='"+a.getText()+"',type='"+a.getType()+"' WHERE id ="+a.getId() ; 
         try { 
-            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;
-            ste.setString(1,a.getNom()) ; 
-            ste.setString(2,a.getAutheur()) ; 
-            ste.setInt(3,a.getVues());
-            ste.setString(4,a.getText());
-            ste.setInt(5,a.getLikes());
-            ste.setString(6,a.getImage());
-            ste.setString(7,a.getVideo()) ; 
-            ste.setString(8,a.getType()) ;
-            ste.setInt(9,a.getRating()) ; 
-            ste.setInt(10,id) ;
-            
-            ste.executeUpdate() ; 
+            PreparedStatement ste = ds.getConnection().prepareStatement(req) ;           
+           ste.executeUpdate() ; 
             
         } catch (SQLException ex) {
             System.out.println("probleme de modification");
@@ -116,6 +105,9 @@ public class ArticleService {
         }
     return list ; 
       }
+    
+    
+    
     
     
 }
