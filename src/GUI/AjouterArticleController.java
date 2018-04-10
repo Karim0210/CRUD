@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +58,16 @@ public class AjouterArticleController implements Initializable {
     
     private  File selectedFile;
     private  FileChooser file;
+    @FXML
+    private ImageView warningtitre;
+    @FXML
+    private ImageView warningtext;
+    @FXML
+    private ImageView warningtype;
+    @FXML
+    private ImageView warningautheur;
+    @FXML
+    private ImageView warningimg;
 
     /**
      * Initializes the controller class.
@@ -64,6 +75,10 @@ public class AjouterArticleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        warningtitre.setVisible(false);
+        warningtext.setVisible(false);
+        warningtype.setVisible(false);
+        warningautheur.setVisible(false);
     }    
 
     
@@ -82,9 +97,43 @@ public class AjouterArticleController implements Initializable {
         
         
     }
+    
+    public boolean checkTextField(TextField text) {
+        if (text.getText().isEmpty()) {
+            return false;
+        } else if (Pattern.matches("[a-zA-Z]+", text.getCharacters())) {
+            return true;
+        }
+
+        return false;
+    }
 
     @FXML
     private void ajouterArticle(ActionEvent event) throws IOException {
+        
+         Boolean verif = true;
+        if(titreT.getText().equals("") || titreT.getText().contains(" ") || checkTextField(titreT)==false )
+        {warningtitre.setVisible(true);verif=false;}
+        else{warningtitre.setVisible(false);}
+        
+        if(autheurT.getText().equals("") || autheurT.getText().contains(" ") || checkTextField(autheurT)==false )
+        {warningautheur.setVisible(true);verif=false;}
+        else{warningautheur.setVisible(false);}
+        
+        if(textT.getText().equals("") || textT.getText().contains(" ") || checkTextField(textT)==false )
+        {warningtext.setVisible(true);verif=false;}
+        else{warningtext.setVisible(false);}
+        
+        if(typeT.getText().equals("") || typeT.getText().contains(" ") || checkTextField(typeT)==false)
+        {warningtype.setVisible(true);verif=false;}
+        else{warningtype.setVisible(false);}
+        
+        if(selectedFile == null )
+        {warningimg.setVisible(true);verif=false;}
+        else{warningimg.setVisible(false);}
+        
+        if(verif==true)
+        {
         
          ArticleService as = new ArticleService();
         
@@ -117,6 +166,8 @@ public class AjouterArticleController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+        
+        }
     }
     
     
@@ -206,6 +257,17 @@ public class AjouterArticleController implements Initializable {
             }
         }
           }
+    }
+
+    @FXML
+    private void returnAccueil(ActionEvent event) throws IOException {
+        Parent root= FXMLLoader.load(getClass().getResource("Menu.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
 }

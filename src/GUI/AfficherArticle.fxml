@@ -14,8 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="GUI.AfficherArticleController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherArticleController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ea624c" height="77.0" layoutX="196.0" stroke="BLACK" strokeType="INSIDE" width="809.0" />
       <Pane prefHeight="653.0" prefWidth="197.0" style="-fx-background-color: #666666;">
@@ -110,7 +109,7 @@
             <DropShadow radius="15.19" width="41.76" />
          </effect>
       </Pane>
-      <Button fx:id="btnaccueil" layoutX="721.0" layoutY="26.0" mnemonicParsing="false" text="Accueil" textFill="#ea624c" />
+      <Button fx:id="btnaccueil" layoutX="721.0" layoutY="26.0" mnemonicParsing="false" onAction="#returnAccueil" text="Accueil" textFill="#ea624c" />
       <Button fx:id="btnlistepediatre" layoutX="809.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnreturn" text="Listes Articles" textFill="#ea624c" />
       <Text fill="WHITE" layoutX="939.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Article">
          <font>

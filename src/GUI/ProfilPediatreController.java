@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import services.PediatreService;
 
 /**
@@ -79,6 +82,10 @@ public class ProfilPediatreController implements Initializable {
     User userinfo;
     @FXML
     private Button btndislike;
+    @FXML
+    private Label warningjeton;
+    @FXML
+    private Text nbJetons;
     /**
      * Initializes the controller class.
      */    
@@ -101,7 +108,7 @@ public class ProfilPediatreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userinfo = LoginPageController.getInstance().userinfo();
         PediatreService ps=new PediatreService();
-        
+        warningjeton.setVisible(false);
 
         btnaccueil.setStyle(
                 
@@ -156,6 +163,7 @@ public class ProfilPediatreController implements Initializable {
         this.nbrvues.setText(String.valueOf(p.getVues()));
         this.nbrlikes.setText(String.valueOf(p.getLikes()));
         this.nbrrating.setText(String.valueOf(p.getRating()));
+        this.nbJetons.setText(String.valueOf(p.getPrix()));
         //this.btnechange.setText(p.getParent().getNom());
         pinfo = p;
         
@@ -290,13 +298,26 @@ public class ProfilPediatreController implements Initializable {
     }
 
     @FXML
-    private void consulterPediatre(ActionEvent event) throws IOException {
+    private void consulterPediatre(ActionEvent event) throws IOException, InterruptedException {
         
-       Parent root= FXMLLoader.load(getClass().getResource("ConsulterPediatre.fxml"));
-       Scene scene = new Scene(root);
-       Stage stage = new Stage();
-       stage.setScene(scene);
-       stage.show();
+       if(userinfo.getNbJetons()>pinfo.getPrix()) 
+       {
+         Parent root= FXMLLoader.load(getClass().getResource("ConsulterPediatre.fxml"));
+         Scene scene = new Scene(root);
+         Stage stage = new Stage();
+         stage.setScene(scene);
+         stage.show();  
+       }
+       else
+       {
+           warningjeton.setVisible(true);
+           Timeline timeline = new Timeline(
+                   new KeyFrame(Duration.seconds(2), e->{
+                       warningjeton.setVisible(false);
+                   })
+           );
+           timeline.play();
+       }
        
        
 
@@ -311,6 +332,17 @@ public class ProfilPediatreController implements Initializable {
         btnlike.setVisible(true);
         btndislike.setVisible(false);
         this.nbrlikes.setText(String.valueOf(pinfo.getLikes()));
+    }
+
+    @FXML
+    private void returnAccueil(ActionEvent event) throws IOException {
+        Parent root= FXMLLoader.load(getClass().getResource("Menu.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
 }

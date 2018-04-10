@@ -89,6 +89,8 @@ public class AjouterPediatreController implements Initializable {
     private ImageView erreurformation;
     @FXML
     private ImageView erreurdescription;
+    @FXML
+    private ImageView erreurimg;
     
     
 
@@ -121,6 +123,7 @@ public class AjouterPediatreController implements Initializable {
         erreurnum.setVisible(false);
         erreurspecialite.setVisible(false);
         erreurparcours.setVisible(false);
+        erreurimg.setVisible(false);
         
         
         
@@ -140,16 +143,26 @@ public class AjouterPediatreController implements Initializable {
         }
         return pat.matcher(email).matches();
     }
+    
+    public boolean checkTextField(TextField text) {
+        if (text.getText().isEmpty()) {
+            return false;
+        } else if (Pattern.matches("[a-zA-Z]+", text.getCharacters())) {
+            return true;
+        }
+
+        return false;
+    }
 
     @FXML
     private void ajouterPediatre(ActionEvent event) throws IOException {
         
         Boolean verif = true;
-        if(nomT.getText().equals("") || nomT.getText().contains(" ") )
+        if(nomT.getText().equals("") || nomT.getText().contains(" ") || checkTextField(nomT)==false)
         {erreurnom.setVisible(true);verif=false;}
         else{erreurnom.setVisible(false);}
        
-        if(prenomT.getText().equals("") || prenomT.getText().contains(" ") )
+        if(prenomT.getText().equals("") || prenomT.getText().contains(" ") || checkTextField(prenomT)==false)
         {erreurprenom.setVisible(true);verif=false;}
         else{erreurprenom.setVisible(false);}
         
@@ -157,34 +170,40 @@ public class AjouterPediatreController implements Initializable {
         {erreuremail.setVisible(true);verif=false;}
         else{erreuremail.setVisible(false);}
         
-         if(specialiteT.getText().equals("") || specialiteT.getText().contains(" ") )
+         if(specialiteT.getText().equals("") || specialiteT.getText().contains(" ") || checkTextField(specialiteT)==false)
         {erreurspecialite.setVisible(true);verif=false;}
         else{erreurspecialite.setVisible(false);}
           
-         if(numT.getText().equals("") || numT.getText().contains(" ") )
+         if(numT.getText().equals("") || numT.getText().contains(" ")|| checkTextField(numT)==false)
         {erreurnum.setVisible(true);verif=false;}
         else{erreurnum.setVisible(false);}
          
-         if(parcoursT.getText().equals("") || parcoursT.getText().contains(" ") )
+         if(parcoursT.getText().equals("") || parcoursT.getText().contains(" ") || checkTextField(parcoursT)==false)
         {erreurparcours.setVisible(true);verif=false;}
         else{erreurparcours.setVisible(false);}
           
-         if(formationT.getText().equals("") || formationT.getText().contains(" ") )
+         if(formationT.getText().equals("") || formationT.getText().contains(" ") || checkTextField(formationT)==false)
         {erreurformation.setVisible(true);verif=false;}
         else{erreurformation.setVisible(false);}
            
-         if(descriptionT.getText().equals("") || descriptionT.getText().contains(" ") )
+         if(descriptionT.getText().equals("") || descriptionT.getText().contains(" ") || checkTextField(descriptionT)==false)
         {erreurdescription.setVisible(true);verif=false;}
         else{erreurdescription.setVisible(false);}
             
-         if(adresseT.getText().equals("") || adresseT.getText().contains(" ") )
+         if(adresseT.getText().equals("") || adresseT.getText().contains(" ") || checkTextField(adresseT)==false)
         {erreuradresse.setVisible(true);verif=false;}
         else{erreuradresse.setVisible(false);}
+         
+         if(selectedFile == null )
+        {erreurimg.setVisible(true);verif=false;}
+        else{erreurimg.setVisible(false);}
        
         
         
         
-        
+        if(verif==true)
+        {
+     
         PediatreService ps = new PediatreService();
         
         String nom = nomT.getText();
@@ -228,6 +247,7 @@ public class AjouterPediatreController implements Initializable {
        Stage stage = new Stage();
        stage.setScene(scene);
        stage.show();
+        }
                 
        
     }
@@ -334,6 +354,17 @@ public class AjouterPediatreController implements Initializable {
             }
         }
           }
+    }
+
+    @FXML
+    private void returnAccueil(ActionEvent event) throws IOException {
+        Parent root= FXMLLoader.load(getClass().getResource("Menu.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
 }

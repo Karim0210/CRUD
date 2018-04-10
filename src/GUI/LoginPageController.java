@@ -77,7 +77,7 @@ public class LoginPageController implements Initializable {
             
             ((Node) (event.getSource())).getScene().getWindow().hide();
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ListePediatre.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
             Parent root;
             root = loader.load();
             Stage primaryStage = new Stage();

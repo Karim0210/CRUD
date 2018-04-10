@@ -1,33 +1,39 @@
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<Pane layoutX="-7.0" layoutY="-4.0" prefHeight="1084.0" prefWidth="197.0" style="-fx-background-color: #666;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1005.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MenuController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ea624c" height="77.0" layoutX="196.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="809.0" />
+      <Pane layoutY="-4.0" prefHeight="653.0" prefWidth="197.0" style="-fx-background-color: #666666;">
          <children>
-            <Label layoutX="4.0" layoutY="112.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="BABYSITTERS" textFill="#f2f2f2">
+            <Label layoutX="4.0" layoutY="112.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="BABYSITTERS" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverImage" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon1.png" />
+                        <Image url="@../images/icon1.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Label>
             <ImageView fitHeight="15.0" fitWidth="28.0" layoutX="154.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/menu.png" />
+                  <Image url="@../images/menu.png" />
                </image>
                <effect>
                   <Glow />
@@ -41,19 +47,19 @@
                   <Glow />
                </effect>
             </Label>
-            <Label layoutX="4.0" layoutY="190.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="HEALTH CARE" textFill="#f2f2f2">
+            <Label layoutX="4.0" layoutY="190.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="HEALTH CARE" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon3.png" />
+                        <Image url="@../images/icon3.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Label>
-            <Label layoutX="5.0" layoutY="268.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="EDUCATION" textFill="#f2f2f2">
+            <Label layoutX="5.0" layoutY="268.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="EDUCATION" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -63,19 +69,19 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon2.png" />
+                        <Image url="@../images/icon2.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Label>
-            <Label layoutX="5.0" layoutY="346.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="EVENTS" textFill="#f2f2f2">
+            <Label layoutX="5.0" layoutY="346.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="EVENTS" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon41.png" />
+                        <Image url="@../images/icon41.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -83,7 +89,7 @@
             <Line endX="100.0" layoutX="96.0" layoutY="111.0" startX="-100.0" stroke="#f2f2f2" />
             <Line endX="-20.0" layoutX="106.0" layoutY="189.0" opacity="0.52" startX="-100.0" stroke="#f2f2f2" />
             <Line endX="-20.0" layoutX="105.0" layoutY="267.0" opacity="0.52" startX="-100.0" stroke="#f2f2f2" />
-            <Label layoutX="5.0" layoutY="424.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: 666;" text="SHOPS" textFill="#f2f2f2">
+            <Label layoutX="5.0" layoutY="424.0" onMouseEntered="#HoverMenu" onMouseExited="#ExitHoverMenu" prefHeight="77.0" prefWidth="193.0" style="-fx-background-color: #666666;" text="SHOPS" textFill="#f2f2f2">
                <font>
                   <Font name="Ubuntu Bold" size="14.0" />
                </font>
@@ -93,7 +99,7 @@
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="74.0" onMouseEntered="#HoverMenu" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon6.png" />
+                        <Image url="@../images/icon6.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -103,3 +109,20 @@
             <DropShadow radius="15.19" width="41.76" />
          </effect>
       </Pane>
+      <Text fill="WHITE" layoutX="249.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accueil">
+         <font>
+            <Font name="Ubuntu Bold" size="25.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="pediatre" layoutX="382.0" layoutY="180.0" onAction="#goToPediatre" prefHeight="160.0" prefWidth="436.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 10px;" text="Pediatre" textFill="WHITE">
+         <font>
+            <Font name="Fredoka One" size="48.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="article" layoutX="383.0" layoutY="356.0" onAction="#goToArticle" prefHeight="160.0" prefWidth="436.0" style="-fx-background-color: #1bb4b9; -fx-background-radius: 10px;" text="Guide d'alimentation" textFill="WHITE">
+         <font>
+            <Font name="Fredoka One" size="32.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -5,18 +5,25 @@
  */
 package GUI;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -24,6 +31,11 @@ import javafx.scene.paint.Color;
  * @author Karim
  */
 public class MenuController implements Initializable {
+
+    @FXML
+    private JFXButton pediatre;
+    @FXML
+    private JFXButton article;
 
     /**
      * Initializes the controller class.
@@ -118,6 +130,29 @@ public class MenuController implements Initializable {
 
     @FXML
     private void HoverImage(MouseEvent event) {
+    }
+
+    @FXML
+    private void goToPediatre(ActionEvent event) throws IOException {
+        
+         Parent root= FXMLLoader.load(getClass().getResource("ListePediatre.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
+    @FXML
+    private void goToArticle(ActionEvent event) throws IOException {
+         Parent root= FXMLLoader.load(getClass().getResource("ListeArticle.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
 }

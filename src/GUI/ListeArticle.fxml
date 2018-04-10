@@ -119,7 +119,7 @@
             <DropShadow radius="15.19" width="41.76" />
          </effect>
       </Pane>
-      <Button fx:id="btnaccueil" layoutX="794.0" layoutY="26.0" mnemonicParsing="false" text="Accueil" textFill="#ea624c" />
+      <Button fx:id="btnaccueil" layoutX="794.0" layoutY="26.0" mnemonicParsing="false" onAction="#returnAccueil" text="Accueil" textFill="#ea624c" />
       <Text fill="WHITE" layoutX="874.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Listes Articles">
          <font>
             <Font name="Ubuntu Bold" size="12.0" />

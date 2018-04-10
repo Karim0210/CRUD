@@ -110,7 +110,7 @@
             <DropShadow radius="15.19" width="41.76" />
          </effect>
       </Pane>
-      <Button fx:id="btnaccueil" layoutX="881.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-radius: 4px;" text="Accueil" textFill="#ea624c" />
+      <Button fx:id="btnaccueil" layoutX="881.0" layoutY="26.0" mnemonicParsing="false" onAction="#returnAccueil" style="-fx-background-color: #ffffff; -fx-border-radius: 4px;" text="Accueil" textFill="#ea624c" />
       <Button fx:id="btnlistepediatre" layoutX="969.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-radius: 4px;" text="Alimentation" textFill="#ea624c" />
       <Text fill="WHITE" layoutX="1099.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des articles alimentaire">
          <font>
@@ -147,5 +147,30 @@
             <Font name="Ubuntu Bold" size="25.0" />
          </font>
       </Button>
+      <ImageView fx:id="warningtitre" fitHeight="17.0" fitWidth="59.0" layoutX="623.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="warningtext" fitHeight="17.0" fitWidth="59.0" layoutX="632.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="warningtype" fitHeight="17.0" fitWidth="59.0" layoutX="624.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="warningautheur" fitHeight="17.0" fitWidth="59.0" layoutX="1074.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="warningimg" fitHeight="17.0" fitWidth="59.0" layoutX="1099.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning-icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -331,6 +331,17 @@ public class RendezVousController implements Initializable {
        
        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
+
+    @FXML
+    private void returnAccueil(ActionEvent event) throws IOException {
+        Parent root= FXMLLoader.load(getClass().getResource("Menu.fxml"));
+       Scene scene = new Scene(root);
+       Stage stage = new Stage();
+       stage.setScene(scene);
+       stage.show();
+       
+       ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
     
     
 }
