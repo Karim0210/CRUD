@@ -174,7 +174,7 @@ public class AjouterPediatreController implements Initializable {
         {erreurspecialite.setVisible(true);verif=false;}
         else{erreurspecialite.setVisible(false);}
           
-         if(numT.getText().equals("") || numT.getText().contains(" ")|| checkTextField(numT)==false)
+         if(numT.getText().equals("") || numT.getText().contains(" ")|| !numT.getText().matches("[0-9]+") || numT.getText().length()!=8)
         {erreurnum.setVisible(true);verif=false;}
         else{erreurnum.setVisible(false);}
          
@@ -197,6 +197,9 @@ public class AjouterPediatreController implements Initializable {
          if(selectedFile == null )
         {erreurimg.setVisible(true);verif=false;}
         else{erreurimg.setVisible(false);}
+         
+          
+   
        
         
         

@@ -222,8 +222,8 @@ public class ListePediatreController implements Initializable {
         PediatreService ps=new PediatreService();
         
         
-        System.out.println(listviewpediatre.getSelectionModel().
-                getSelectedItem().getUserData());
+//        System.out.println(listviewpediatre.getSelectionModel().
+//                getSelectedItem().getUserData());
        Pediatre p=new Pediatre();
        p=(Pediatre) listviewpediatre.getSelectionModel().
                 getSelectedItem().getUserData();

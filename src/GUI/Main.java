@@ -26,6 +26,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         
+        //Parent root = FXMLLoader.load(getClass().getResource("GererListeArticle.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
